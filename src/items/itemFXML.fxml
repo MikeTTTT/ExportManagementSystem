@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="items.ItemController">
+   <children>
+      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Items">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="239.0" layoutY="-2.0" prefHeight="697.0" prefWidth="1036.0">
+                           <children>
+                              <TableView fx:id="tableview_item" prefHeight="697.0" prefWidth="1052.0">
+                                <columns>
+                                  <TableColumn fx:id="column_id" prefWidth="75.0" text="编号" />
+                                  <TableColumn fx:id="column_unit" prefWidth="75.0" text="单位" />
+                                    <TableColumn fx:id="column_packing" prefWidth="75.0" text="数量" />
+                                    <TableColumn fx:id="column_des" prefWidth="75.0" text="描述" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="-4.0" layoutY="-1.0" prefHeight="696.0" prefWidth="241.0">
+                           <children>
+                              <Label prefHeight="44.0" prefWidth="241.0" text="添加商品详情">
+                                 <padding>
+                                    <Insets bottom="10.0" left="70.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="tf_id" alignment="CENTER" prefHeight="34.0" prefWidth="241.0" promptText="编号">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tf_unit" alignment="CENTER" layoutX="25.0" layoutY="59.0" prefHeight="34.0" prefWidth="241.0" promptText="单位">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tf_packing" alignment="CENTER" layoutX="10.0" layoutY="98.0" prefHeight="34.0" prefWidth="241.0" promptText="数量">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="tf_des" alignment="CENTER" layoutX="10.0" layoutY="132.0" prefHeight="34.0" prefWidth="241.0" promptText="描述">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button fx:id="btn_add" mnemonicParsing="false" onAction="#addItem" prefHeight="32.0" prefWidth="221.0" text="添加">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="btn_clr" layoutX="20.0" layoutY="235.0" mnemonicParsing="false" onAction="#clearField" prefHeight="32.0" prefWidth="221.0" text="清除">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="btn_display" layoutX="10.0" layoutY="272.0" mnemonicParsing="false" onAction="#loadItemData" prefHeight="32.0" prefWidth="221.0" text="查询">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
