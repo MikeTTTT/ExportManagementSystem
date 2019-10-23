@@ -37,7 +37,7 @@ public class LoginModel {
 //                .append("WHERE username = :usr ")
 //                .append("AND password = :pwd");
         // TODO 优化登录
-        String sql = "select * from User where username = ? and password = ?";
+        String sql = "select * from Login where usr = ? and pwd = ?";
 
         try {
             pre = this.connection.prepareStatement(sql);

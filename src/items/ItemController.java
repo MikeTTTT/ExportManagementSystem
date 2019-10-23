@@ -50,7 +50,7 @@ public class ItemController implements Initializable {
     private DBConnection dbconnection;
     private ObservableList<Items> data;
 
-    private String sql = "select * from Items where id = ?";
+    private String sql = "select * from Items";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,10 +63,11 @@ public class ItemController implements Initializable {
             Connection conn = DBConnection.getConnection();
             this.data = FXCollections.observableArrayList();
 
-            PreparedStatement pr = conn.prepareStatement(sql);
-            pr.setString(1, "B204S");
-
-            ResultSet rs = pr.executeQuery();
+//            PreparedStatement pr = conn.prepareStatement(sql);
+//            pr.setString(1, "B204S");
+//
+//            ResultSet rs = pr.executeQuery();
+            ResultSet rs = conn.createStatement().executeQuery(sql);
 
             while (rs.next()){
                 this.data.add(new Items(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
@@ -78,9 +79,9 @@ public class ItemController implements Initializable {
         }
 
         this.column_id.setCellValueFactory(new PropertyValueFactory<Items, String>("ID"));
-        this.column_id.setCellValueFactory(new PropertyValueFactory<Items, String>("UNIT"));
-        this.column_id.setCellValueFactory(new PropertyValueFactory<Items, String>("UNIT_PACKING"));
-        this.column_id.setCellValueFactory(new PropertyValueFactory<Items, String>("DESCRIPTION"));
+        this.column_unit.setCellValueFactory(new PropertyValueFactory<Items, String>("UNIT"));
+        this.column_packing.setCellValueFactory(new PropertyValueFactory<Items, String>("UNIT_PACKING"));
+        this.column_des.setCellValueFactory(new PropertyValueFactory<Items, String>("DESCRIPTION"));
 
         this.tableview_item.setItems(null);
         this.tableview_item.setItems(this.data);
