@@ -1,6 +1,7 @@
 package items;
 
 import dbUtil.DBConnection;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,6 +9,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import utils.StringUtils;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -41,6 +45,8 @@ public class ItemController implements Initializable {
     @FXML
     private Button btn_order_add;
     @FXML
+    private Button btn_add2Order;
+    @FXML
     private TableView<Items> tableview_item;
     @FXML
     private TableColumn<Items, String> column_id;
@@ -51,7 +57,13 @@ public class ItemController implements Initializable {
     @FXML
     private TableColumn<Items, String> column_des;
     @FXML
-    private ListView<Items> lv_order;
+    private Label label_order_id;
+    @FXML
+    private Label label_order_unit;
+    @FXML
+    private Label label_order_packing;
+    @FXML
+    private Label label_order_des;
 
     @FXML
     private Tab tab_item;
@@ -120,8 +132,18 @@ public class ItemController implements Initializable {
 
             statement.execute();
             conn.close();
+
+            this.clearField();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void constarintDigitType(KeyEvent event){
+        Character c = event.getCharacter().charAt(0);
+        if (!(Character.isDigit(c))){
+            event.consume();
         }
     }
 
@@ -129,11 +151,32 @@ public class ItemController implements Initializable {
      * 清除输入添加商品详情区域
      * @param event
      */
-    @FXML
-    private void clearField(ActionEvent event){
+    private void clearField(){
         this.tf_id.setText("");
         this.tf_unit.setText("");
         this.tf_packing.setText("");
         this.tf_des.setText("");
     }
+
+    @FXML
+    private void selectTable(MouseEvent event){
+//        System.out.println("get it");
+        Items items = tableview_item.getSelectionModel().getSelectedItem();
+        System.out.println(items.getID());
+    }
+
+    /**
+     * 添加选中商品至订单中
+     * @param event
+     */
+    @FXML
+    private void addItemToOrder(ActionEvent event){
+        Items items = tableview_item.getSelectionModel().getSelectedItem();
+        label_order_id.setText(label_order_id.getText().toString()+"\n"+items.getID());
+        label_order_unit.setText(label_order_unit.getText().toString()+"\n"+items.getUNIT());
+        label_order_packing.setText(label_order_packing.getText().toString()+"\n"+items.getUNIT_PACKING());
+        label_order_des.setText(label_order_des.getText().toString()+"\n"+items.getDESCRIPTION());
+
+    }
+
 }
